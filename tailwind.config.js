@@ -14,6 +14,7 @@ module.exports = {
      "lgr" : "#E0FFEF",
      "delete" : "#F24E1E",
      "dgr" : "#FFEAE4",
+     "modal" : "rgba(0,0,0,0.4)"
     },
     extend: {},
   },
