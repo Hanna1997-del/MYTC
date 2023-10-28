@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {IoMdClose} from 'react-icons/io'
 
 const modalBox = 'fixed z-1 left-0 top-0 w-full h-full flex items-center justify-center bg-modal'
 
@@ -83,6 +84,7 @@ export default function({closeModal, onSubmit , defaultValue}) {
        if (e.target.className === "modalBox")closeModal();
     }} >
         <div className='rounded-sm p-8 bg-white w-96 border'>
+            <button className='flex flex-col w-[330px] h-5 items-end ' onClick={closeModal}><IoMdClose className='text-2xl'/></button>
         <h3 className='m-5 text-2xl font-extrabold text-center'>Add Member</h3>
             <form className='grid grid-cols-2 gap-4' >
                 

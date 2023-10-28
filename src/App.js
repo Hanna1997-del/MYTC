@@ -38,7 +38,13 @@ const handleEditRows = (idx) => {
   setModelOpen(true);
 }
 const handleSubmit =(newRow) => {
-  setRows([...rows,newRow])
+  rowToEdit === null ? 
+  setRows([...rows,newRow]) :
+  setRows(rows.map((currRow, idx) => {
+    if (idx !== rowToEdit) return currRow
+
+    return newRow;
+  }))
 }
   
   return (
@@ -56,8 +62,8 @@ const handleSubmit =(newRow) => {
          </div>
         </div>
          <div className="w-[1536px] h-[960px]">
-          <div className='flex gap-4 ml-56 mt-4'>
-            <button className='w-12 h-10 border border-user rounded-sm px-2 mt-2 '><FaSliders className='h-6 w-6'/></button>
+          <div className='flex gap-4 ml-64 mt-4'>
+            <button className='w-10 h-10 border border-user rounded-sm px-2 mt-2 '><FaSliders className='h-6 w-6'/></button>
             <input className='w-[360px] mt-2 h-10 border border-user  rounded-sm px-3 relative text-user' placeholder='Search ny name... '></input>
             <p className='absolute top-9 left-[850px] text-user'><IoSearchOutline/></p>
             <button className='w-44 mt-2 h-10 rounded-md bg-user text-white' onClick={() =>setModelOpen(true)}>+ New Member</button>
@@ -67,7 +73,8 @@ const handleSubmit =(newRow) => {
            <MyRadioGroup rows={rows} deleteRow={handleDeleteRows} editRow={handleEditRows}/>
            {modelOpen && <Modal closeModal={()=>{
             setModelOpen(false);
-           }}
+            setRowToEdit(null);
+                     }}
            onSubmit={handleSubmit}
            defaultValue={rowToEdit !== null && rows[rowToEdit]}
            />}
